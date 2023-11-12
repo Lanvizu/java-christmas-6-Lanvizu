@@ -2,11 +2,11 @@ package christmas.domain;
 
 import christmas.global.utils.constant.ConsoleType;
 import christmas.global.utils.constant.DiscountType;
+import christmas.global.utils.constant.MenuCategoryType;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MenuList {
 
@@ -20,12 +20,11 @@ public class MenuList {
     }
 
     private void validateMenuUnique(List<Menu> menuList) {
-        List<String> onlyMenuNames = new ArrayList<>();
-        for (Menu menu : menuList) {
-            onlyMenuNames.add(menu.getInputMenu());
-        }
-        Set<String> uniqueMenus = new HashSet<>(onlyMenuNames);
-        if (onlyMenuNames.size() != uniqueMenus.size()) {
+        Set<String> uniqueMenus = menuList.stream()
+                .map(Menu::getInputMenu)
+                .collect(Collectors.toSet());
+
+        if (menuList.size() != uniqueMenus.size()) {
             throw new IllegalArgumentException(ConsoleType.EXCEPTION_ORDER.getcomment());
         }
     }
@@ -43,5 +42,16 @@ public class MenuList {
     public List<Menu> getMenuList() {
         return menuList;
     }
-//    디저트,메인메뉴 개수 가져오는 기능 추가
+
+    public int getDessertCount() {
+        return (int) menuList.stream()
+                .filter(menu -> menu.getMenuCategoryType().equals(MenuCategoryType.DESSERT))
+                .count();
+    }
+
+    public int getMainCount() {
+        return (int) menuList.stream()
+                .filter(menu -> menu.getMenuCategoryType().equals(MenuCategoryType.MAIN))
+                .count();
+    }
 }
