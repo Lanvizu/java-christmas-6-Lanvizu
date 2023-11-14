@@ -4,6 +4,7 @@ import christmas.global.utils.constant.ConsoleType;
 import christmas.global.utils.constant.DiscountType;
 import christmas.global.utils.constant.MenuCategoryType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,11 +13,15 @@ public class MenuList {
 
     private final List<Menu> menuList;
 
-    public MenuList(List<Menu> menuList) {
+    public MenuList() {
+        this.menuList = new ArrayList<>();
+    }
+
+    public void addMenuList(Menu menu) {
+        menuList.add(menu);
+
         validateMenuUnique(menuList);
         validateTotalOfMenuCount(menuList);
-
-        this.menuList = menuList;
     }
 
     private void validateMenuUnique(List<Menu> menuList) {
