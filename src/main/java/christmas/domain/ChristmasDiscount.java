@@ -23,4 +23,5 @@ public class ChristmasDiscount {
     public int getAmountOfDiscount() {
         return amountOfDiscount;
     }
+
 }
