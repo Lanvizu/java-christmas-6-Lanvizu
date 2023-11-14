@@ -2,6 +2,7 @@ package christmas.global.utils.constant;
 
 public enum BadgeType {
 
+    OTHER("없음",0),
     STAR_BADGE("별", 5000),
     TREE_BADGE("트리", 10000),
     SANTA_BADGE("산타", 20000);
