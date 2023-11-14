@@ -14,15 +14,12 @@ public class WeekDiscount {
     }
 
     private int getAmountOfDiscount(Date inputDate, MenuList menuList) {
-        int amountOfDiscount;
         if (DateType.DATE_OF_WEEKEND.getDates().contains(inputDate.getInputDate())) {
-            amountOfDiscount = menuList.getMainCount() * DiscountType.AMOUNT_OF_WEEKEND_DISCOUNT.getValue();
             this.dayType = DayType.Weekend;
-            return amountOfDiscount;
+            return menuList.getMainCount() * DiscountType.AMOUNT_OF_WEEKEND_DISCOUNT.getValue();
         }
-        amountOfDiscount = menuList.getDessertCount() * DiscountType.AMOUNT_OF_WEEKDAY_DISCOUNT.getValue();
         this.dayType = DayType.Weekday;
-        return amountOfDiscount;
+        return menuList.getDessertCount() * DiscountType.AMOUNT_OF_WEEKDAY_DISCOUNT.getValue();
     }
 
     public int getAmountOfDiscount() {
