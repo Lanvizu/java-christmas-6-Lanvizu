@@ -42,7 +42,6 @@ public class DiscountService {
         boolean anyDiscountApplied = Stream.of(outputChristmasDiscount(totalManage),
                         outputWeekDiscount(totalManage), outputSpecialDiscount(totalManage), outputEventDiscount(totalManage))
                 .anyMatch(Boolean::valueOf);
-
         if (!anyDiscountApplied) {
             OutputView.commonOutputLine(ConsoleType.NONE.getcomment());
         }
@@ -82,9 +81,9 @@ public class DiscountService {
     }
 
     private boolean outputEventDiscount(TotalManage totalManage) {
-        SpecialDiscount specialDiscount = totalManage.getSpecialDiscount();
-        if (specialDiscount.getAmountOfDiscount() > DiscountType.ZERO.getValue()) {
-            OutputView.commonOutputLine(ConsoleType.OUTPUT_EVENT_DISCOUNT.getComment(specialDiscount.getAmountOfDiscount()));
+        EventDiscount eventDiscount = totalManage.getEventDiscount();
+        if (eventDiscount.getAmountOfDiscount() > DiscountType.ZERO.getValue()) {
+            OutputView.commonOutputLine(ConsoleType.OUTPUT_EVENT_DISCOUNT.getComment(eventDiscount.getAmountOfDiscount()));
             return true;
         }
         return false;
