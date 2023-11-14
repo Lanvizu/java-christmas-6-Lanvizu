@@ -11,7 +11,7 @@ public class Badge {
 
     private BadgeType validateBadge(int totalOfDiscount) {
         if (totalOfDiscount >= BadgeType.SANTA_BADGE.getValue()) {
-            return BadgeType.STAR_BADGE;
+            return BadgeType.SANTA_BADGE;
         }
         if (totalOfDiscount >= BadgeType.TREE_BADGE.getValue()) {
             return BadgeType.TREE_BADGE;
